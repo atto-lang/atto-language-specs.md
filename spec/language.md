@@ -53,7 +53,11 @@ Exact parameter-list and body separators must be validated against the canonical
 
 **Open:** The exact inheritance lattice, abstract method syntax, override rules, actor constructor restrictions and trait coherence rules require a separate ratified grammar and type-system chapter.
 
-### 2.3 Fields and qualifiers — established direction
+### 2.3 State containers and virtual actors — candidate contract
+
+The proposed declaration heads are `define state container Name as ... end` and `define virtual actor Name as ... end`. These are **new declaration kinds**, not aliases of ordinary classes or runtime-transparent actor spawning. The tokens `state` and `virtual` are contextual in declaration position. `grain` is not an alias. The state container protects mutable heap referents through `handle_state(critical-read/critical-write ...)`; the virtual actor adds logical key identity, fenced activation and an explicit storage policy while preserving actor isolation/supervision. See the [candidate full contract](state-containers-and-virtual-actors.md). No backend implementation is established by this draft.
+
+### 2.4 Fields and qualifiers — established direction
 
 - Class fields without a written mutability qualifier default to an implicitly immutable val; the formatter may omit redundant val after verifying equivalent semantics.
 - let denotes mutable binding where permitted; final denotes single assignment; const requires a compile-time constant.
