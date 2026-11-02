@@ -12,6 +12,8 @@ Oreslang is an actor-first systems language intended to combine checked ownershi
 2. [Compiler and runtime contract](spec/compiler-runtime-contract.md) — HIR/MIR, LLVM and Truffle/GraalVM, lowering rules, runtime ABI, memory models, hot loading, and portable backends.
 3. [Conformance and parity](spec/conformance.md) — shared fixtures, negative tests, optimization-equivalence checks, execution evidence, and CI gates.
 
+4. [State containers and virtual actors](spec/state-containers-and-virtual-actors.md) — proposed contextual declaration grammar, protected mutable state, stable logical actor identity, activation, ownership, and backend admission gates.
+
 ## Interpretation
 
 - **Established design decision**: previously chosen Oreslang surface or semantic direction; remains subject to implementation and conformance.
