@@ -25,7 +25,10 @@ No capability is inferred from mere connection to an HTTP socket.
 - Exact endpoint: `POST /mcp`; application/json responses are sufficient for
   immediate request/response operations. Every modern request MUST have
   `Mcp-Protocol-Version`, `Mcp-Method` and, where applicable, `Mcp-Name`.
-  Reject header/body disagreement and unsupported versions.
+  Reject header/body disagreement and unsupported versions. Every request
+  carries `params._meta` with `io.modelcontextprotocol/protocolVersion` and
+  `io.modelcontextprotocol/clientCapabilities`; 2026 responses use
+  `resultType: complete` and server identity in result `_meta`.
 - `server/discover`, `tools/list` and `tools/call` are mandatory for v1.
   Tools are deterministic and read-only in this phase. Response `ttlMs=0` and
   `cacheScope=private` prevent stale/sharable runtime state.
@@ -47,7 +50,9 @@ MCP v1 tools, allowed on read-only role `runtime.inspect`:
 | Name | Input | Result | Semantics |
 | --- | --- | --- | --- |
 | `atto.runtime_info` | empty object | typed, bounded runtime summary | Actual per-runtime actor count and backend identity, not fabricated actors |
-| `atto.list_actors` | paging/cursor (future) | bounded actor descriptors | **NOT_IMPLEMENTED** until a supervisor-checked registry snapshot exists |
+| `atto.list_actors` | optional limit (1–64) | detached actor descriptors | **JAVA PROTOTYPE**: supervisor-authorized weakly consistent metadata; no actor-private state |
+| `atto.inspect_actor` | actor UUID | one detached actor descriptor | **JAVA PROTOTYPE**: no hidden state or raw pointer access |
+| `atto.list_tasks` | optional limit (1–64) | logical Task ID, lifecycle | **JAVA PROTOTYPE**: advertised only when AsyncRuntime attached; excludes TaskLocal and OS carrier identities |
 | `atto.snapshot_actor` | actor ID, generation, field allowlist (future) | redacted immutable state snapshot | **NOT_IMPLEMENTED** until consistency/authorization proof exists |
 | `atto.trace_actor` | actor ID, bounded window (future) | redacted trace | **NOT_IMPLEMENTED** until per-actor authorization is implemented |
 
@@ -126,8 +131,11 @@ not establish compiler guest-code, state snapshots or hot-upgrade correctness.
 All such claims require exact source SHA, test command, target, execution
 receipt and cross-backend independently verified results.
 
-P0: run localhost authenticated MCP discovery + runtime_info against a
-real ActorRuntime; assert actor count changes after spawn/termination.
+P0: run localhost authenticated MCP discovery, runtime_info, bounded
+actor descriptors, and optional Task descriptors against the actual Java
+runtime. Host protocol tests, mock tool views, and official SDK tests
+alone do NOT prove real ActorRuntime or AsyncRuntime execution; only a
+full live runtime integration run with traceable evidence can do that.
 P1: attach checked supervisor-only actor registry snapshots and lifecycle.
 P2: stage/retire stateless code generations using existing hot loader.
 P3: prove actor-state migration and safe rollback in cross-backend fixtures.
