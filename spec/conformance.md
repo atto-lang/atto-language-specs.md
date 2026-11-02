@@ -60,11 +60,11 @@ comparison:
 
 The checked_add spelling above is **illustrative** until standardized. Do not report this test as runnable solely because its YAML is parseable.
 
-## 3. State-container and virtual-actor candidate corpus
+### 2.1 State-container and virtual-actor candidate corpus
 
 Candidate IDs `state_container.*` and `virtual_actor.*` are specified in [state-containers-and-virtual-actors.md](state-containers-and-virtual-actors.md) and the portable JSON contract `state-container-virtual-actor-v1.json` in `oreslang-platform-conformance`. Each case starts `NOT_EXECUTED`; schema tests must not upgrade it to a compiler pass. `define grain` must not be accepted as an implicit alias.
 
-## 4. Required shared suites
+## 3. Required shared suites
 
 The following IDs are a **proposed catalogue**, not evidence of existing files.
 
