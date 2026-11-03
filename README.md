@@ -14,6 +14,8 @@ Oreslang is an actor-first systems language intended to combine checked ownershi
 
 4. [State containers and virtual actors](spec/state-containers-and-virtual-actors.md) — proposed contextual declaration grammar, protected mutable state, stable logical actor identity, activation, ownership, and backend admission gates.
 
+5. [AttoLang Live Runtime DevTools / MCP v1](spec/atto-live-runtime-devtools-mcp-v1.md) — proposed opt-in, read-only runtime inspection, authorization boundaries, and future transactional hot-upgrade gates. No backend implementation claims.
+
 ## Interpretation
 
 - **Established design decision**: previously chosen Oreslang surface or semantic direction; remains subject to implementation and conformance.
