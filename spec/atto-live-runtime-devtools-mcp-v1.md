@@ -50,9 +50,9 @@ MCP v1 tools, allowed on read-only role `runtime.inspect`:
 | Name | Input | Result | Semantics |
 | --- | --- | --- | --- |
 | `atto.runtime_info` | empty object | typed, bounded runtime summary | Actual per-runtime actor count and backend identity, not fabricated actors |
-| `atto.list_actors` | optional limit (1–64) | detached actor descriptors | **JAVA PROTOTYPE**: supervisor-authorized weakly consistent metadata; no actor-private state |
-| `atto.inspect_actor` | actor UUID | one detached actor descriptor | **JAVA PROTOTYPE**: no hidden state or raw pointer access |
-| `atto.list_tasks` | optional limit (1–64) | logical Task ID, lifecycle | **JAVA PROTOTYPE**: advertised only when AsyncRuntime attached; excludes TaskLocal and OS carrier identities |
+| `atto.list_actors` | optional limit (1–64) | detached actor descriptors | **PROPOSED** (Java prototype: oreslang-source.java#2454, unmerged draft): supervisor-authorized weakly consistent metadata; no actor-private state |
+| `atto.inspect_actor` | actor UUID | one detached actor descriptor | **PROPOSED** (Java prototype: oreslang-source.java#2454, unmerged draft): no hidden state or raw pointer access |
+| `atto.list_tasks` | optional limit (1–64) | logical Task ID, lifecycle | **PROPOSED** (Java prototype: oreslang-source.java#2454, unmerged draft): advertised only when AsyncRuntime attached; excludes TaskLocal and OS carrier identities |
 | `atto.snapshot_actor` | actor ID, generation, field allowlist (future) | redacted immutable state snapshot | **NOT_IMPLEMENTED** until consistency/authorization proof exists |
 | `atto.trace_actor` | actor ID, bounded window (future) | redacted trace | **NOT_IMPLEMENTED** until per-actor authorization is implemented |
 
