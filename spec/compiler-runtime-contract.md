@@ -1,6 +1,6 @@
 # Compiler, IR and Runtime Portability Contract — Editor's Draft
 
-**Edition:** 0.1 | **Updated:** 2026-11-01 | **Status:** Proposed normative backend contract
+**Edition:** 0.1 | **Updated:** 2026-11-04 | **Status:** Proposed normative backend contract
 
 This specification supplements [the core language](language.md) and is verified through [conformance](conformance.md).
 
@@ -17,17 +17,18 @@ Target implementers:
 | Java/GraalVM | Language nodes or Truffle bytecode, specialized through Graal | JVM JIT and GraalVM Native Image |
 | LLVM | Verified MIR to LLVM IR, linking against native runtime | Native AOT and optional LLVM JIT |
 | Wasm | Verified MIR to Wasm and host runtime imports | Browser/Node workers and appropriate Wasm hosts |
-| Cranelift/Forge | Verified MIR to Cranelift/native runtime | Native JIT and/or AOT |
+| Forge | Independent Forge compiler/runtime and its reviewed native lowering | Native interpreter/JIT/AOT profiles only when evidenced |
+| Cranelift | Independent Cranelift compiler and runtime, with its own verifiable lowering | Native JIT and/or AOT profiles only when evidenced |
 | .NET | Verified MIR to CIL and portable runtime | Native AOT on supported targets |
 
-These describe architecture targets, not verification results.
+These describe **six separate required backend identities**, not verification results. Forge and Cranelift MUST NOT borrow one another's compile, runtime, or source-coverage evidence. JavaScript transpilation is optional and cannot substitute for a required backend. See [spec-to-corpus traceability](parity-traceability.md).
 
 ## 2. Compilation stages
 
 Recommended common phase structure:
 
 ~~~text
-.ores source
+.atto source (legacy .ores accepted only by explicitly declared compatibility profiles)
   -> tokens / parsed AST with source ranges
   -> resolved typed HIR (names, effects, generics, traits)
   -> ownership and borrow validation
