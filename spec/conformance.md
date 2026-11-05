@@ -1,12 +1,12 @@
 # Cross-Backend Conformance and Parity — Editor's Draft
 
-**Edition:** 0.1 | **Updated:** 2026-11-01 | **Status:** Proposed verification standard
+**Edition:** 0.1 | **Updated:** 2026-11-04 | **Status:** Proposed verification standard
 
 This document governs evidence for the [core language](language.md) and [compiler/runtime contract](compiler-runtime-contract.md).
 
 ## 1. Goal and non-goals
 
-A portable Oreslang program must preserve the same semantic outcome across **Java/Truffle, LLVM, Wasm, Cranelift/Forge and .NET**. Different memory layouts, scheduler interleavings, performance and target capabilities are allowed only where they do not violate the declared contract.
+A portable Oreslang program must preserve the same semantic outcome across **Java/Truffle, LLVM, Wasm, .NET Native AOT, Forge and Cranelift** as six independently evidenced backends. Different memory layouts, scheduler interleavings, performance and target capabilities are allowed only where they do not violate the declared contract.
 
 This repository is **not** a dashboard asserting that any feature has passed. The fixture catalogue below is the acceptance target. Evidence must be collected from actual code, compilers and runtime executions.
 
@@ -63,6 +63,10 @@ The checked_add spelling above is **illustrative** until standardized. Do not re
 ### 2.1 State-container and virtual-actor candidate corpus
 
 Candidate IDs `state_container.*` and `virtual_actor.*` are specified in [state-containers-and-virtual-actors.md](state-containers-and-virtual-actors.md) and the portable JSON contract `state-container-virtual-actor-v1.json` in `oreslang-platform-conformance`. Each case starts `NOT_EXECUTED`; schema tests must not upgrade it to a compiler pass. `define grain` must not be accepted as an implicit alias.
+
+### 2.2 Source-extension and traceability gate
+
+New canonical language examples and parity fixtures use `.atto`. The existing `.ores` corpus is retained as **legacy compatibility evidence** until an explicit, reviewed migration; never rename, translate, or rewrite a case separately for one backend. A source-extension parser acceptance test is not proof of guest execution. See [specification-to-corpus traceability](parity-traceability.md) for bridge identity and evidence rules.
 
 ## 3. Required shared suites
 
@@ -280,7 +284,7 @@ A change affecting language semantics must contain:
 5. Target-specific ABI/sanitizer/race evidence when the change touches native memory or concurrency.
 6. Explicit provenance, risk and fallback notes.
 
-**Pass** means the declared and executed gate passed. It never means "all five toolchains are at parity" unless all five have independently earned CONFORMANCE_VERIFIED for the relevant profile.
+**Pass** means the declared and executed gate passed. It never means "all five toolchains are at parity" unless all six required backends have independently earned CONFORMANCE_VERIFIED for the relevant profile.
 
 ---
 
