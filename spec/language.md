@@ -1,7 +1,7 @@
 # Oreslang Core Language — Editor's Draft
 
 **Edition:** 0.1  
-**Updated:** 2026-11-01  
+**Updated:** 2026-11-04  
 **Status:** Draft language contract; examples are not evidence of compiler support.  
 **Conformance:** See [conformance.md](conformance.md); backend implementation requirements in [compiler-runtime-contract.md](compiler-runtime-contract.md).
 
@@ -272,6 +272,7 @@ The trap modifier for a callable indicates it cannot **throw** (although raise/p
 
 ### 8.1 Modules and imports — established direction
 
+- New AttoLang sources, examples, and fixtures use `.atto`; `.ores` is a legacy source extension admitted only by an explicitly declared compatibility profile. An extension change alone MUST NOT change parsing or semantics, and compiler conformance requires the same exact source bytes for each backend within a case.
 - define module is private by default; define pub module exports a module.
 - A project-root import uses + to refer to the root found by .ores.pkg.toml discovery.
 - ORES_PATHS supplies additional colon-delimited resolution roots where applicable.
