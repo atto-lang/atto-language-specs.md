@@ -4,18 +4,17 @@
 **Scope:** Language semantics and cross-toolchain portability.  
 **Implementation status:** This repository defines contracts to be implemented and tested; publication here is **not** proof that any backend implements them.
 
-Oreslang is an actor-first systems language intended to combine checked ownership and borrowing, explicit failure propagation, typed functional composition, and portable concurrency with native and managed execution.
+AttoLang (formerly Oreslang) is an actor-first systems language intended to combine checked ownership and borrowing, explicit failure propagation, typed functional composition, and portable concurrency with native and managed execution.
 
 ## Specification documents
 
 1. [Core language](spec/language.md) — syntax, declarations, types, ownership, actors and ActorGroups, errors, matching, modules, and effects.
 2. [Compiler and runtime contract](spec/compiler-runtime-contract.md) — HIR/MIR, LLVM and Truffle/GraalVM, lowering rules, runtime ABI, memory models, hot loading, and portable backends.
 3. [Conformance and parity](spec/conformance.md) — shared fixtures, negative tests, optimization-equivalence checks, execution evidence, and CI gates.
-6. [Specification-to-corpus traceability](spec/parity-traceability.md) — stable fixture IDs, independent backend identities, canonical `.atto` sources, and non-evidentiary mapping to the parity corpus.
-
 4. [State containers and virtual actors](spec/state-containers-and-virtual-actors.md) — proposed contextual declaration grammar, protected mutable state, stable logical actor identity, activation, ownership, and backend admission gates.
 
 5. [AttoLang Live Runtime DevTools / MCP v1](spec/atto-live-runtime-devtools-mcp-v1.md) — proposed opt-in, read-only runtime inspection, authorization boundaries, and future transactional hot-upgrade gates. No backend implementation claims.
+6. [Specification-to-corpus traceability](spec/parity-traceability.md) — stable fixture IDs, independent backend identities, canonical `.atto` sources, and non-evidentiary mapping to the parity corpus.
 
 ## Interpretation
 
