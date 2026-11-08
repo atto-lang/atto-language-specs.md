@@ -47,3 +47,13 @@ Names of the backends denote targets, not a claim that each target currently pas
 Proposals must identify affected syntax, type/effect rules, error behavior, actor lifecycle, memory safety, and backend portability; add shared positive and negative examples; and state compatibility impact. A grammar change without a cross-backend diagnostic and behavior plan is incomplete.
 
 Normative changes should be accompanied by a conformance fixture ID. Do not mark a behavior as verified based on source inspection alone, a pending test, or a workflow that did not execute any steps.
+
+## Repository ownership and legacy-exit decision (2026-11-08)
+
+**Current:** `ores-truffle-oreslang/oreslang-language-specs.md`, legacy source organization. **Status: EXPLICIT HOLD**, not a completed or approved transfer. AttoLang is the public name; historical `.ores`, repositories, CLI, packages and other Oreslang references remain compatibility surfaces.
+
+- **Belongs here:** historical Oreslang language specification material for traceability and semantic reconciliation.
+- **Must live elsewhere:** canonical new language decisions should be reconciled with `attolang-language-spec.md` and common core contracts rather than creating an independent conflicting normative spec; backend-specific code belongs in its compiler; commercial cloud features belong under [atto-co](https://github.com/atto-co).
+- **Organization separation:** [atto-lang](https://github.com/atto-lang) is the intended home for canonical spec/compiler/library/tooling work. [atto-co](https://github.com/atto-co) is for independently governed infrastructure, billing, deployment and tenant products. Neither an `atto-*` repository name nor this note establishes a Git identity transfer.
+
+**Explicit owner decision required:** choose transfer after reconciliation, archive, or time-bounded legacy compatibility with named reviewer/date, as governed by private [migration draft #25](https://github.com/ores-truffle-oreslang/.github/pull/25). Record in [issue #26](https://github.com/ores-truffle-oreslang/.github/issues/26) the source numeric ID, exact commit SHA/tree, PRs/issues/releases, dependencies/consumers, branch protections/rulesets, target access and independent security/source/target admin approvals, Actions/secrets/Apps/webhooks, Pages and rollback. No unapproved private source mirror or automatic transfer. For an eventual approved GitHub ownership transfer verify unchanged ID/history/tree and target permissions, then update links separately and rerun exact-head CI: `steps=[]`/`null` is `NOT_EXECUTED` and host/static checks are not real AttoLang guest parity evidence.
